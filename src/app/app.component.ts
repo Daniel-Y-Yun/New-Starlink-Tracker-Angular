@@ -8,9 +8,7 @@ import { HomeComponent } from './home/home.component';
     HomeComponent,
   ],
   template: `
-    <div>
-      <app-home></app-home>
-    </div>
+    <app-home></app-home>
   `,
   styleUrls: ['./app.component.css']
 })

@@ -1,7 +1,10 @@
-<mat-drawer-container class="container" autosize>
-  <app-side-menu-entry *ngFor="let launchDate of launchDateList"></app-side-menu-entry>
+<div class="date-container">
+  <button (click)="clickDateButton()" mat-raised-button class="date-button">
+    {{ launchDate.date }}
+  </button>
+  <div *ngIf="showDate">
+    <p *ngFor="let id of launchDate.ids">{{ id }}</p>
+  </div>
+</div>
 
-  <!-- <div class="sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">Toggle</button>
-  </div> -->
-</mat-drawer-container>
+<!-- TODO: close other groups when new one opens -->

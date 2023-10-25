@@ -1,0 +1,15 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav class="sidenav" mode="over">
+    <div *ngFor="let launchDate of launchDateList">
+      <app-side-menu [launchDate]="launchDate" [globalToggle]="false"  (launchDateEvent)="showSats($event)"></app-side-menu>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button type="button" mat-button (click)="sidenav.toggle()">Toggle</button>
+    <div>
+        <p>Launch Date: {{ currentDate.date }}</p>
+        <tr *ngFor="let id of currentDate.ids">{{ id }}</tr>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
