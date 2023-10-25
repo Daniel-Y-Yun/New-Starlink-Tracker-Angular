@@ -1,5 +1,6 @@
 .app-container {
-    background-image: url(./assets/background-gif.gif);
+    /* background-image: url(./assets/background-gif.gif); */
+    background-color: #031c1f;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,3 +9,5 @@
     width:  100%;
     margin: 0px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
