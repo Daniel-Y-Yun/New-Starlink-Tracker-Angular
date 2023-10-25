@@ -1,15 +1,37 @@
 <mat-sidenav-container class="container">
-  <mat-sidenav #sidenav class="sidenav" mode="over">
+  <mat-sidenav #sidenav class="sidenav" mode="push">
     <div *ngFor="let launchDate of launchDateList">
-      <app-side-menu [launchDate]="launchDate" [globalToggle]="false"  (launchDateEvent)="showSats($event)"></app-side-menu>
+      <app-side-menu
+        [launchDate]="launchDate"
+        [globalToggle]="false"
+        (launchDateEvent)="showSats($event)"
+        (idEvent)="showId($event)"
+      >
+      </app-side-menu>
     </div>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <button type="button" mat-button (click)="sidenav.toggle()">Toggle</button>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        mat-icon-button
+        color="white"
+        (click)="sidenav.toggle()"
+        class="launchDateButton"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>Starlink Tracker</h1>
+    </mat-toolbar>
+
     <div>
-        <p>Launch Date: {{ currentDate.date }}</p>
-        <tr *ngFor="let id of currentDate.ids">{{ id }}</tr>
+      <p>{{ currentId }}</p>
+      <p>Launch Date: {{ currentDate.date }}</p>
+      <tr *ngFor="let id of currentDate.ids">
+        {{ id }}
+      </tr>
+      <p>{{ data }}</p>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

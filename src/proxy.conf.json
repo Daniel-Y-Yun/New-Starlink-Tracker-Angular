@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://api.n2yo.com/rest/v1/satellite/tle/",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+}

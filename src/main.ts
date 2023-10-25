@@ -10,13 +10,14 @@ import { bootstrapApplication,provideProtractorTestingSupport } from '@angular/p
 import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
-// import routeConfig from './app/routes';
+import {provideHttpClient} from '@angular/common/http';
 
 bootstrapApplication(AppComponent,
   {
     providers: [
     provideProtractorTestingSupport(),
-    provideAnimations()
+    provideAnimations(),
+    provideHttpClient()
 ]
   }
 ).catch(err => console.error(err));

@@ -3,8 +3,9 @@
     {{ launchDate.date }}
   </button>
   <div *ngIf="showDate">
-    <p *ngFor="let id of launchDate.ids">{{ id }}</p>
+    <p *ngFor="let id of launchDate.ids" (click)="clickIdButton(id)">{{ id }}</p>
   </div>
 </div>
 
 <!-- TODO: close other groups when new one opens -->
+<!-- TODO: implement AngularMaterial: Expansion Panel, and make ids -->

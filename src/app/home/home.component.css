@@ -7,7 +7,7 @@
   /* width: 500px;
     height: 300px; */
   height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  /* border: 1px solid rgba(0, 0, 0, 0.5); */
 }
 
 /* .sidenav-content {
@@ -24,3 +24,7 @@
 .mat-drawer-inner-container::-webkit-scrollbar {
     display: none;
 }
+
+/* .launchDateButton {
+  align-self: ;
+} */

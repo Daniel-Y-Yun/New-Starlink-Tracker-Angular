@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LaunchDate } from '../launchDate';
-import { SideMenuEntryComponent } from '../side-menu-entry/side-menu-entry.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -10,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [
     CommonModule,
-    SideMenuEntryComponent,
     MatSidenavModule,
     MatButtonModule,
   ],
@@ -21,10 +19,18 @@ export class SideMenuComponent {
   @Input() launchDate!: LaunchDate;
   @Input() globalToggle!: boolean;
   @Output() launchDateEvent = new EventEmitter<LaunchDate>();
+  @Output() idEvent = new EventEmitter<String>();
   showDate = this.globalToggle;
+  currentId: String = "";
 
   clickDateButton() {
     this.showDate = !this.showDate;
     this.launchDateEvent.emit(this.launchDate);
   }
+
+  clickIdButton(id: String) {
+    this.currentId = id;
+    this.idEvent.emit(this.currentId)
+  }
+
 }
