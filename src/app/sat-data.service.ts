@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import sat_data from '../assets/json/sat_data.json';
 import { LaunchDate } from './launchDate';
 import { Observable } from 'rxjs';
@@ -37,12 +37,12 @@ export class SatDataService {
   }
 
   getPostById(id: String): any {
-    console.log(api)
-    this.http
-      .get<any>(api + '44772&apiKey=3CHDPN-FC6B4C-ADPBFB-4V01')
-      .subscribe((data: any) => {
-        return data;
-      });
+    let headers = new HttpHeaders();
+    headers = headers.set("Access-Control-Allow-Origin", "*")
+    return this.http.get('https://api.n2yo.com/rest/v1/satellite/tle/44772&apiKey=3CHDPN-FC6B4C-ADPBFB-4V01', {
+      headers: headers
+    })
+      
   }
 
   // ${this.url}${id}&apiKey=${this.api_key}

@@ -43,7 +43,9 @@ export class HomeComponent {
   showId(id: String) {
     this.currentId = id;
     console.log(this.data)
-    this.data = this.satData.getPostById(id)
+    this.data = this.satData.getPostById(id).subscribe((data: any) => {
+      this.data = data;
+    });
     console.log(this.data)
   }
 

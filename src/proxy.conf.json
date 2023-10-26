@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://api.n2yo.com/rest/v1/satellite/tle/",
+    "target": "https://api.n2yo.com/rest/v1/satellite/tle/44772&apiKey=3CHDPN-FC6B4C-ADPBFB-4V01",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
