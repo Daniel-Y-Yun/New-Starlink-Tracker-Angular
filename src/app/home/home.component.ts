@@ -1,14 +1,13 @@
 import { Component, inject, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
-import env  from '../../assets/json/env.json'; 
+import env from '../../assets/json/env.json';
 import { SatDataService } from '../sat-data.service';
 import { LaunchDate } from '../launchDate';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-home',
@@ -24,17 +23,15 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   templateUrl: 'home.html',
   styleUrls: ['./home.component.css'],
 })
-
 export class HomeComponent {
   url = env.env.base_api_url;
   api_key = env.env.api_key;
-  data: any[] = ["hello"];
-  // `${baseUrl}tle/${satId}&apiKey=${apiKey}`
+  data: any;
 
-  satData: SatDataService = inject(SatDataService)
+  satData: SatDataService = inject(SatDataService);
   launchDateList: LaunchDate[] = this.satData.launchDateList;
   currentDate: LaunchDate = this.launchDateList[0];
-  currentId: String = "";
+  currentId: String = '';
 
   showSats(launchDate: LaunchDate) {
     this.currentDate = launchDate;
@@ -42,23 +39,12 @@ export class HomeComponent {
 
   showId(id: String) {
     this.currentId = id;
-    console.log(this.data)
-    this.data = this.satData.getPostById(id).subscribe((data: any) => {
+    this.satData.getById(id).subscribe((data: JSON) => {
+      console.log(data);
       this.data = data;
     });
-    console.log(this.data)
-  }
-
-  async getSatData(id: String) {
-    const data = await fetch(' https://api.n2yo.com/rest/v1/satellite/tle/44772&apiKey=3CHDPN-FC6B4C-ADPBFB-4V01');
-    return await data.json() ?? [];
+    // TODO: data returned is not synch, fix with map and/or pipe?
   }
 
   constructor(private satApi: SatDataService) {}
-
-  // test() {
-  //   this.getSatData().then(data => {
-  //       this.data = data;
-  //     });
-  // }
 }

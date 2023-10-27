@@ -4,7 +4,7 @@ import sat_data from '../assets/json/sat_data.json';
 import { LaunchDate } from './launchDate';
 import { Observable } from 'rxjs';
 import env from '../assets/json/env.json';
-import api from '../proxy.conf.json'
+import api from '../proxy.conf.json';
 
 @Injectable({
   providedIn: 'root',
@@ -36,13 +36,12 @@ export class SatDataService {
     return launchDates;
   }
 
-  getPostById(id: String): any {
-    let headers = new HttpHeaders();
-    headers = headers.set("Access-Control-Allow-Origin", "*")
-    return this.http.get('https://api.n2yo.com/rest/v1/satellite/tle/44772&apiKey=3CHDPN-FC6B4C-ADPBFB-4V01', {
-      headers: headers
-    })
-      
+  getById(id: String): any {
+    let headers = new HttpHeaders()
+      .set('content-type', 'application/json');
+    const url = '/api/' + id + "&apiKey=" + this.api_key;
+
+    return this.http.get(url, {'headers': headers});
   }
 
   // ${this.url}${id}&apiKey=${this.api_key}
