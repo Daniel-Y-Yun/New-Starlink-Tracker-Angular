@@ -1,4 +1,6 @@
+import { Satellite } from "./satellite";
+
 export interface LaunchDate {
   date: string;
-  ids: [];
+  sats: Satellite[];
 }

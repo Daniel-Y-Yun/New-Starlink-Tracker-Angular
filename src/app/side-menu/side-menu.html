@@ -3,7 +3,7 @@
     {{ launchDate.date }}
   </button>
   <div *ngIf="showDate">
-    <p *ngFor="let id of launchDate.ids" (click)="clickIdButton(id)">{{ id }}</p>
+    <p *ngFor="let sat of launchDate.sats" (click)="clickIdButton(sat)">{{ sat.satid }} ({{ sat.satname }})</p>
   </div>
 </div>
 

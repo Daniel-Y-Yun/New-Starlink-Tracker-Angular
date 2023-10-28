@@ -1,0 +1,8 @@
+sat-data.services.ts/initSatList
+TODO: don't init all sats at once at beginning; this will exceed number
+of calls per hour. Maybe try only loading when launch group is selected or
+find a more elegant ui/ux design for displaying sats. 
+
+side-menu.component.ts/side-menu.html
+TODO: close other groups when new one opens
+TODO: implement AngularMaterial: Expansion Panel, and make ids

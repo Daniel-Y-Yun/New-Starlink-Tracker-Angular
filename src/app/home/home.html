@@ -28,10 +28,10 @@
     <div>
       <p>{{ currentId }}</p>
       <p>Launch Date: {{ currentDate.date }}</p>
-      <tr *ngFor="let id of currentDate.ids">
-        {{ id }}
+      <tr *ngFor="let sat of currentDate.sats">
+        {{ sat.satid }}
       </tr>
-      <p>{{ data }}</p>
+      <p *ngIf="showSatname" >{{ satData.info.satname }}</p>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

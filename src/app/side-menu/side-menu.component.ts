@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LaunchDate } from '../launchDate';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import { Satellite } from '../satellite';
 
 @Component({
   selector: 'app-side-menu',
@@ -19,18 +20,16 @@ export class SideMenuComponent {
   @Input() launchDate!: LaunchDate;
   @Input() globalToggle!: boolean;
   @Output() launchDateEvent = new EventEmitter<LaunchDate>();
-  @Output() idEvent = new EventEmitter<String>();
+  @Output() idEvent = new EventEmitter<Satellite>();
   showDate = this.globalToggle;
-  currentId: String = "";
 
   clickDateButton() {
     this.showDate = !this.showDate;
     this.launchDateEvent.emit(this.launchDate);
   }
 
-  clickIdButton(id: String) {
-    this.currentId = id;
-    this.idEvent.emit(this.currentId)
+  clickIdButton(sat: Satellite) {
+    this.idEvent.emit(sat)
   }
 
 }
