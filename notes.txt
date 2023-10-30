@@ -6,3 +6,13 @@ find a more elegant ui/ux design for displaying sats.
 side-menu.component.ts/side-menu.html
 TODO: close other groups when new one opens
 TODO: implement AngularMaterial: Expansion Panel, and make ids
+
+
+
+Notes:
+
+ArcGIS Maps SDK: Setting up your TypeScript environment https://developers.arcgis.com/javascript/latest/typescript-setup/
+
+    3d sattelite visualization
+
+ng generate service housing --skip-tests
