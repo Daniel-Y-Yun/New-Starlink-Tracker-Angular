@@ -1,6 +1,7 @@
 import { Component, inject, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
+import {MatTabsModule} from '@angular/material/tabs';
 import env from '../../assets/json/env.json';
 import { SatDataService } from '../sat-data.service';
 import { LaunchDate } from '../launchDate';
@@ -21,6 +22,7 @@ import { Satellite } from '../satellite';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatTabsModule
   ],
   templateUrl: 'home.html',
   styleUrls: ['./home.component.css'],
