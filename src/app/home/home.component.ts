@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { last, lastValueFrom } from 'rxjs';
 import { Satellite } from '../satellite';
+import { SatTableComponent } from '../sat-table/sat-table.component';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ import { Satellite } from '../satellite';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    SatTableComponent
   ],
   templateUrl: 'home.html',
   styleUrls: ['./home.component.css'],

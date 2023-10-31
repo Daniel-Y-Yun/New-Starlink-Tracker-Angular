@@ -1,10 +1,11 @@
 {
   "/api": {
-    "target": "https://api.n2yo.com/rest/v1/satellite/",
+    "target": "https://celestrak.org/NORAD/elements/",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
     },
     "changeOrigin": true
   }
+  
 }

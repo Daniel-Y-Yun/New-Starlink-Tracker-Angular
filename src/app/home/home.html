@@ -28,14 +28,17 @@
 
     <mat-tab-group>
       <mat-tab label="Table">
-        <div>
+        <app-sat-table *ngIf="showSats" [launchDate]="currentDate">
+
+        </app-sat-table>
+        <!-- <div>
           <p>{{ currentId }}</p>
           <p>Launch Date: {{ currentDate.date }}</p>
           <tr *ngFor="let sat of currentDate.sats">
             {{ sat.satid }}
           </tr>
           <p *ngIf="showSatname" >{{ satData.info.satname }}</p>
-        </div>
+        </div> -->
       </mat-tab> 
       <mat-tab label="Visual"></mat-tab>
     </mat-tab-group>

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { Component, inject, Input } from '@angular/core';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { SatDataService } from '../sat-data.service';
 import { LaunchDate } from '../launchDate';
+import { Satellite } from '../satellite';
 
 
 @Component({
@@ -13,6 +14,13 @@ import { LaunchDate } from '../launchDate';
   styleUrls: ['./sat-table.component.css'],
 })
 export class SatTableComponent {
-  satService: SatDataService = inject(SatDataService);
-  launchDateList: LaunchDate[] = this.satService.getLaunchDateList();
+  @Input() launchDate!: LaunchDate;
+
+  // satService: SatDataService = inject(SatDataService);
+  // launchDateList: LaunchDate[] = this.satService.getLaunchDateList();
+
+  displayedColumns: string[] = ['name', 'id', 'tle', 'satlat', 'satlong', 'satalt', 'azimuth', 'elevation', 'ra', 'dec', 'timestamp'];
+  // ELEMENT_DATA: Satellite[] = this.launchDate.sats;
+  // dataSource = new MatTableDataSource<Satellite>(this.ELEMENT_DATA);
+
 }
