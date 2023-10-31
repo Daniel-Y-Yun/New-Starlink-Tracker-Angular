@@ -34,7 +34,7 @@ export class HomeComponent {
   showSatname = false;
 
   satService: SatDataService = inject(SatDataService);
-  launchDateList: LaunchDate[] = this.satService.launchDateList;
+  launchDateList: LaunchDate[] = this.satService.getLaunchDateList();
   currentDate: LaunchDate = this.launchDateList[0];
   currentId: String = '';
 
@@ -44,7 +44,7 @@ export class HomeComponent {
 
   async showId(sat: Satellite) {
     let id = sat.satid;
-    const satData$ = this.satService.getSatDataById(id);
+    const satData$ = this.satService.getTleById(id);
     this.satData = await lastValueFrom(satData$);
     console.log(this.satData);
     sat.satname = this.satData.info.satname;
