@@ -47,7 +47,7 @@ export class SatDataService {
     // console.log(this.data[date])
     let sats: Satellite[] = [];
     this.data[date].forEach((id: string) => {
-      this.setTleAndName(id);
+      // this.setTleAndName(id);
       let newSat: Satellite = {
         satid: id,
         satname: this.satName,
