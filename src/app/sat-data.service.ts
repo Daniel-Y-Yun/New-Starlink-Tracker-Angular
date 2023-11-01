@@ -7,6 +7,9 @@ import { LaunchDate } from './launchDate';
 import { Satellite } from './satellite';
 import env from '../assets/json/env.json';
 import { last, lastValueFrom } from 'rxjs';
+import ommData from '../assets/json/omm.json';
+import { ThisReceiver } from '@angular/compiler';
+import { Omm } from './omm';
 
 @Injectable({
   providedIn: 'root',
@@ -19,12 +22,17 @@ export class SatDataService {
 
   url = env.env.base_api_url;
   api_key = env.env.api_key;
-
-  
-  
+  tleText = '';
+  ommData: JSON = JSON.parse(JSON.stringify(ommData));
 
   constructor(private http: HttpClient) {
-    this.initSats();
+    this.readFile();
+    this.initSatsList();
+    console.log(this.ommData)
+
+    // console.log(this.tleText)
+    // this.parseSatData(this.tleText);
+    // console.log(this.satList);
   }
 
   async getTleData() {
@@ -45,16 +53,28 @@ export class SatDataService {
     return ommData;
   }
 
-  // async testFlask() {
-  //   const url = '/test';
-  //   const data$ = this.http.get(url);
-  //   let data: any = await lastValueFrom(data$);
-  //   console.log(data);
+  // async readFile() {
+  //   const text$ = this.http.get('../assets/json/tle.txt', {
+  //     responseType: 'text',
+  //   });
+  //   let text: any = await lastValueFrom(text$);
+  //   this.tleText = text;
+  //   console.log('here');
+  //   console.log(this.tleText);
   // }
+
+  readFile() {
+    this.http.get('../assets/json/tle.txt', {
+      responseType: 'text',
+    }).subscribe(data => {
+      this.initSats(data, this.ommData)
+      console.log(this.satList)
+    })
+  }
 
   // Initializes a list of Satellite objects
   // This is done once a day to prevent too many api calls to CelesTrak
-  initSats() {
+  initSatsList() {
     const lastExecutionDate = localStorage.getItem('lastExecutionDate');
     const currentDate = new Date();
     const currentDateString = currentDate.toDateString();
@@ -72,6 +92,64 @@ export class SatDataService {
       console.log('This code has already been executed today.');
     }
   }
+
+  private initSats(tleData: string, ommData: JSON) {
+    const lines = tleData.split('\n');
+
+    let currentIndex = 0;
+    while (currentIndex < lines.length) {
+      const line = lines[currentIndex].trim();
+      if (line.startsWith('STARLINK-')) {
+        const name = line;
+        const line1 = lines[currentIndex + 1].trim();
+        const line2 = lines[currentIndex + 2].trim();
+
+        let sat: Satellite = {
+          satname: name,
+          tle: line1 + "\n" + line2,
+        };
+
+        this.satList.push(sat);
+        currentIndex += 3; // Move to the next STARLINK entry
+      } else {
+        currentIndex++; // Move to the next line
+      }
+    }
+
+    this.initOmmObs(ommData);
+  }
+
+  initOmmObs(ommData: JSON) {
+    let ommDict = {};
+    ommData.map(sat => {
+      let omm: Omm = {
+        OBJECT_ID: sat.OBJECT_ID,
+        EPOCH: sat.EPOCH,
+        MEAN_MOTION: sat.MEAN_MOTION,
+        ECCENTRICITY: sat.ECCENTRICITY,
+        INCLINATION: sat.INCLINATION,
+        RA_OF_ASC_NODE: sat.RA_OF_ASC_NODE,
+        ARG_OF_PERICENTER: sat.ARG_OF_PERICENTER,
+        MEAN_ANOMALY: sat.MEAN_ANOMALY,
+        EPHEMERIS_TYPE: sat.EPHEMERIS_TYPE,
+        CLASSIFICATION_TYPE: sat.CLASSIFICATION_TYPEg,
+        NORAD_CAT_ID: sat.NORAD_CAT_ID,
+        ELEMENT_SET_NO: sat.ELEMENT_SET_NO,
+        REV_AT_EPOCH: sat.REV_AT_EPOCH,
+        BSTAR: sat.BSTAR,
+        MEAN_MOTION_DOT: sat.MEAN_MOTION_DOT,
+        MEAN_MOTION_DDOT: sat.MEAN_MOTION_DDOT
+      }
+      ommDict[sat.OBJECT_NAME] = omm;
+    })
+  }
+
+  // async testFlask() {
+  //   const url = '/test';
+  //   const data$ = this.http.get(url);
+  //   let data: any = await lastValueFrom(data$);
+  //   console.log(data);
+  // }
 
   // private async parseTleDate() {
   //   const tleData$ = this.getTleData();
