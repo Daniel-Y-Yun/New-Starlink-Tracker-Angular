@@ -44,16 +44,16 @@ export class HomeComponent {
     this.currentDate = launchDate;
   }
 
-  async showId(sat: Satellite) {
-    let id = sat.satid;
-    const satData$ = this.satService.getTleById(id);
-    this.satData = await lastValueFrom(satData$);
-    console.log(this.satData);
-    sat.satname = this.satData.info.satname;
+  // async showId(sat: Satellite) {
+  //   // let id = sat.satid;
+  //   const satData$ = this.satService.getTleById(id);
+  //   this.satData = await lastValueFrom(satData$);
+  //   console.log(this.satData);
+  //   sat.satname = this.satData.info.satname;
 
-    this.showSatname = true;
-    console.log(this.satData.info.satname)
-  }
+  //   this.showSatname = true;
+  //   console.log(this.satData.info.satname)
+  // }
 
   constructor() {}
 }
