@@ -23,16 +23,12 @@ export class SatDataService {
   url = env.env.base_api_url;
   api_key = env.env.api_key;
   tleText = '';
-  ommData: JSON = JSON.parse(JSON.stringify(ommData));
+  ommData: any[] = JSON.parse(JSON.stringify(ommData));
 
   constructor(private http: HttpClient) {
-    this.readFile();
+    // localStorage.setItem('lastExecutionDate', 'j');
     this.initSatsList();
-    console.log(this.ommData)
-
-    // console.log(this.tleText)
-    // this.parseSatData(this.tleText);
-    // console.log(this.satList);
+    console.log(this.satList);
   }
 
   async getTleData() {
@@ -40,7 +36,6 @@ export class SatDataService {
 
     const tleData$ = this.http.get(url, { responseType: 'text' });
     let tleData: any = await lastValueFrom(tleData$);
-    console.log(tleData);
     return tleData;
   }
 
@@ -49,7 +44,6 @@ export class SatDataService {
 
     const ommData$ = this.http.get(url, { responseType: 'text' });
     let ommData: any = await lastValueFrom(ommData$);
-    console.log(ommData);
     return ommData;
   }
 
@@ -63,13 +57,41 @@ export class SatDataService {
   //   console.log(this.tleText);
   // }
 
-  readFile() {
-    this.http.get('../assets/json/tle.txt', {
-      responseType: 'text',
-    }).subscribe(data => {
-      this.initSats(data, this.ommData)
-      console.log(this.satList)
-    })
+  private initSats() {
+    this.http
+      .get('../assets/json/tle.txt', {
+        responseType: 'text',
+      })
+      .subscribe((data) => {
+        this.initSatsHelper(data, this.ommData);
+      });
+  }
+
+  private initSatsHelper(tleData: string, ommData: any[]) {
+    const lines = tleData.split('\n');
+    const ommDict = this.getOmmDict(ommData);
+
+    let currentIndex = 0;
+    while (currentIndex < lines.length) {
+      const line = lines[currentIndex].trim();
+      if (line.startsWith('STARLINK-')) {
+        const name = line;
+        const line1 = lines[currentIndex + 1].trim();
+        const line2 = lines[currentIndex + 2].trim();
+
+        let sat: Satellite = {
+          satname: name,
+          tle: line1 + '\n' + line2,
+          omm: ommDict.get(name)
+        };
+
+        this.satList.push(sat);
+        currentIndex += 3; // Move to the next STARLINK entry
+      } else {
+        currentIndex++; // Move to the next line
+      }
+    }
+    
   }
 
   // Initializes a list of Satellite objects
@@ -85,6 +107,7 @@ export class SatDataService {
 
       let tleData = this.getTleData();
       let ommData = this.getOmmData();
+      this.initSats();
 
       // Update the last execution date in localStorage
       localStorage.setItem('lastExecutionDate', currentDateString);
@@ -93,35 +116,9 @@ export class SatDataService {
     }
   }
 
-  private initSats(tleData: string, ommData: JSON) {
-    const lines = tleData.split('\n');
-
-    let currentIndex = 0;
-    while (currentIndex < lines.length) {
-      const line = lines[currentIndex].trim();
-      if (line.startsWith('STARLINK-')) {
-        const name = line;
-        const line1 = lines[currentIndex + 1].trim();
-        const line2 = lines[currentIndex + 2].trim();
-
-        let sat: Satellite = {
-          satname: name,
-          tle: line1 + "\n" + line2,
-        };
-
-        this.satList.push(sat);
-        currentIndex += 3; // Move to the next STARLINK entry
-      } else {
-        currentIndex++; // Move to the next line
-      }
-    }
-
-    this.initOmmObs(ommData);
-  }
-
-  initOmmObs(ommData: JSON) {
-    let ommDict = {};
-    ommData.map(sat => {
+  getOmmDict(ommData: any[]) {
+    const ommDict = new Map<string, Omm>();
+    ommData.forEach((sat) => {
       let omm: Omm = {
         OBJECT_ID: sat.OBJECT_ID,
         EPOCH: sat.EPOCH,
@@ -138,10 +135,11 @@ export class SatDataService {
         REV_AT_EPOCH: sat.REV_AT_EPOCH,
         BSTAR: sat.BSTAR,
         MEAN_MOTION_DOT: sat.MEAN_MOTION_DOT,
-        MEAN_MOTION_DDOT: sat.MEAN_MOTION_DDOT
-      }
-      ommDict[sat.OBJECT_NAME] = omm;
-    })
+        MEAN_MOTION_DDOT: sat.MEAN_MOTION_DDOT,
+      };
+      ommDict.set(sat.OBJECT_NAME, omm);
+    });
+    return ommDict;
   }
 
   // async testFlask() {
