@@ -8,8 +8,9 @@ TODO: close other groups when new one opens
 TODO: implement AngularMaterial: Expansion Panel, and make ids
 
 TODO:
-in initSatsList() store the satList in localStorage so I have an fresh instance once a day and 
+- in initSatsList() store the satList in localStorage so I have an fresh instance once a day and 
 the list is only initialized once a day
+- tooltip for table columns (angular material?)
 
 
 Notes:
