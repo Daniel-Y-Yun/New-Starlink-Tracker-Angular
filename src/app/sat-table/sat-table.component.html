@@ -1,8 +1,105 @@
-<!-- <table mat-table [dataSource]="dataSource">
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- satname Column -->
     <ng-container matColumnDef="name">
-        <th mat-cel *matCellDef="let element"> {{ element.name }}</th>
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.satname }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.OBJECT_ID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="tle">
+      <th mat-header-cell *matHeaderCellDef>TLE</th>
+      <td mat-cell *matCellDef="let element">{{ element.tle }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="epoch">
+      <th mat-header-cell *matHeaderCellDef>Epoch</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.EPOCH }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="meanMotion">
+      <th mat-header-cell *matHeaderCellDef>Mean Motion</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_MOTION }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="eccentricity">
+      <th mat-header-cell *matHeaderCellDef>Eccentricity</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.ECCENTRICITY }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="inclination">
+      <th mat-header-cell *matHeaderCellDef>Inclination</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.INCLINATION }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ra">
+      <th mat-header-cell *matHeaderCellDef>RA_OF_ASC_NODE</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.RA_OF_ASC_NODE }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="arg">
+      <th mat-header-cell *matHeaderCellDef>ARG_OF_PERICENTER</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.ARG_OF_PERICENTER }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="meanAnomoly">
+      <th mat-header-cell *matHeaderCellDef>MEAN_ANOMALY</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_ANOMALY }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ephemeris">
+      <th mat-header-cell *matHeaderCellDef>EPHEMERIS_TYPE</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.EPHEMERIS_TYPE }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="class">
+      <th mat-header-cell *matHeaderCellDef>Classification Type</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.CLASSIFICATION_TYPE }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="noradId">
+      <th mat-header-cell *matHeaderCellDef>NORAD_CAT_ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.NORAD_CAT_ID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="elementSetNo">
+      <th mat-header-cell *matHeaderCellDef>ELEMENT_SET_NO</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.ELEMENT_SET_NO }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rev">
+      <th mat-header-cell *matHeaderCellDef>REV_AT_EPOCH</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.REV_AT_EPOCH }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="bstar">
+      <th mat-header-cell *matHeaderCellDef>BSTAR</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.BSTAR }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="meanMotionDot">
+      <th mat-header-cell *matHeaderCellDef>MEAN_MOTION_DOT</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_MOTION_DOT }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="meanMotionDdot">
+      <th mat-header-cell *matHeaderCellDef>MEAN_MOTION_DDOT</th>
+      <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_MOTION_DDOT   }}</td>
+    </ng-container>
+
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 50, 100]"
+    showFirstLastButtons
+    aria-label="Select page of satellites"
+  >
+  </mat-paginator>
+</div>

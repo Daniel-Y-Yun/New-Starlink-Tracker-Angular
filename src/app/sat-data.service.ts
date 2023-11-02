@@ -28,7 +28,11 @@ export class SatDataService {
   constructor(private http: HttpClient) {
     // localStorage.setItem('lastExecutionDate', 'j');
     this.initSatsList();
-    console.log(this.satList);
+    // console.log(this.satList);
+  }
+
+  getSatList(): Satellite[] {
+    return this.satList;
   }
 
   async getTleData() {
@@ -46,16 +50,6 @@ export class SatDataService {
     let ommData: any = await lastValueFrom(ommData$);
     return ommData;
   }
-
-  // async readFile() {
-  //   const text$ = this.http.get('../assets/json/tle.txt', {
-  //     responseType: 'text',
-  //   });
-  //   let text: any = await lastValueFrom(text$);
-  //   this.tleText = text;
-  //   console.log('here');
-  //   console.log(this.tleText);
-  // }
 
   private initSats() {
     this.http
@@ -101,16 +95,19 @@ export class SatDataService {
     const currentDate = new Date();
     const currentDateString = currentDate.toDateString();
 
-    if (lastExecutionDate !== currentDateString) {
+    this.satList = JSON.parse(localStorage.getItem('satList') || '[]');
+    
+    if (lastExecutionDate == currentDateString) { // Add ! to turn this function on
       // Your code to be executed once a day goes here
       console.log('This code runs once a day.');
 
-      let tleData = this.getTleData();
-      let ommData = this.getOmmData();
+      // let tleData = this.getTleData();
+      // let ommData = this.getOmmData();
       this.initSats();
 
       // Update the last execution date in localStorage
       localStorage.setItem('lastExecutionDate', currentDateString);
+      localStorage.setItem('satList', JSON.stringify(this.satList));
     } else {
       console.log('This code has already been executed today.');
     }

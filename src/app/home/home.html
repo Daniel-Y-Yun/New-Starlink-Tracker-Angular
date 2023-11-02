@@ -1,8 +1,8 @@
 <mat-sidenav-container class="container">
   <mat-sidenav #sidenav class="sidenav" mode="push">
-    <div *ngFor="let launchDate of launchDateList">
+    <div *ngFor="let sat of satList">
       <app-side-menu
-        [launchDate]="launchDate"
+        [sat]="sat"
         [globalToggle]="false"
         (launchDateEvent)="showSats($event)"
       >
@@ -27,9 +27,7 @@
 
     <mat-tab-group>
       <mat-tab label="Table">
-        <app-sat-table *ngIf="showSats" [launchDate]="currentDate">
-
-        </app-sat-table>
+        <app-sat-table></app-sat-table>
         <!-- <div>
           <p>{{ currentId }}</p>
           <p>Launch Date: {{ currentDate.date }}</p>

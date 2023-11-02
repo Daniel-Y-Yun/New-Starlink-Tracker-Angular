@@ -19,3 +19,24 @@ ArcGIS Maps SDK: Setting up your TypeScript environment https://developers.arcgi
     3d sattelite visualization
 
 ng generate service housing --skip-tests
+
+
+test = [
+    OBJECT_NAME,
+    OBJECT_ID,
+    EPOCH,
+    MEAN_MOTION,
+    ECCENTRICITY,
+    INCLINATION,
+    RA_OF_ASC_NODE,
+    ARG_OF_PERICENTER,
+    MEAN_ANOMALY,
+    EPHEMERIS_TYPE,
+    CLASSIFICATION_TYPE,
+    NORAD_CAT_ID,
+    ELEMENT_SET_NO,
+    REV_AT_EPOCH,
+    BSTAR,
+    MEAN_MOTION_DOT,
+    MEAN_MOTION_DDOT,
+  ];

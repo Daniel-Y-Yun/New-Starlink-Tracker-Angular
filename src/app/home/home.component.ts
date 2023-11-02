@@ -33,10 +33,11 @@ export class HomeComponent {
   url = env.env.base_api_url;
   api_key = env.env.api_key;
   satData: any;
-  showSatname = false;
+  showSatname = true;
 
   satService: SatDataService = inject(SatDataService);
   launchDateList: LaunchDate[] = this.satService.getLaunchDateList();
+  satList: Satellite[] = this.satService.getSatList();
   currentDate: LaunchDate = this.launchDateList[0];
   currentId: String = '';
 

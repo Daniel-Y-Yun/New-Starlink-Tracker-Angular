@@ -1,10 +1,16 @@
-<div class="date-container">
+<!-- <div class="date-container">
   <button (click)="clickDateButton()" mat-raised-button class="date-button">
     {{ launchDate.date }}
   </button>
-  <div *ngIf="showDate">
+  <div *ngIf="showDate"> -->
     <!-- <p *ngFor="let sat of launchDate.sats" (click)="clickIdButton(sat)">{{ sat.satid }} ({{ sat.satname }})</p> -->
-  </div>
+  <!-- </div>
+</div> -->
+
+<div class="date-container">
+  <button mat-raised-button class="date-button">
+    {{ sat.satname }}
+  </button>
 </div>
 
 <!-- TODO: close other groups when new one opens -->
