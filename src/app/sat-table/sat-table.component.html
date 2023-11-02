@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<section class="table-container mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
     <!-- satname Column -->
     <ng-container matColumnDef="name">
@@ -38,12 +38,16 @@
 
     <ng-container matColumnDef="ra">
       <th mat-header-cell *matHeaderCellDef>RA_OF_ASC_NODE</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.RA_OF_ASC_NODE }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.RA_OF_ASC_NODE }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="arg">
       <th mat-header-cell *matHeaderCellDef>ARG_OF_PERICENTER</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.ARG_OF_PERICENTER }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.ARG_OF_PERICENTER }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="meanAnomoly">
@@ -53,12 +57,16 @@
 
     <ng-container matColumnDef="ephemeris">
       <th mat-header-cell *matHeaderCellDef>EPHEMERIS_TYPE</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.EPHEMERIS_TYPE }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.EPHEMERIS_TYPE }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="class">
       <th mat-header-cell *matHeaderCellDef>Classification Type</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.CLASSIFICATION_TYPE }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.CLASSIFICATION_TYPE }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="noradId">
@@ -68,7 +76,9 @@
 
     <ng-container matColumnDef="elementSetNo">
       <th mat-header-cell *matHeaderCellDef>ELEMENT_SET_NO</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.ELEMENT_SET_NO }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.ELEMENT_SET_NO }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="rev">
@@ -83,23 +93,29 @@
 
     <ng-container matColumnDef="meanMotionDot">
       <th mat-header-cell *matHeaderCellDef>MEAN_MOTION_DOT</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_MOTION_DOT }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.MEAN_MOTION_DOT }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="meanMotionDdot">
       <th mat-header-cell *matHeaderCellDef>MEAN_MOTION_DDOT</th>
-      <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_MOTION_DDOT   }}</td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.omm.MEAN_MOTION_DDOT }}
+      </td>
     </ng-container>
 
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator
-    [pageSizeOptions]="[10, 50, 100]"
-    showFirstLastButtons
-    aria-label="Select page of satellites"
-  >
-  </mat-paginator>
-</div>
+  <div class="footer">
+    <mat-paginator
+      [pageSize]="25"
+      [pageSizeOptions]="[10, 50, 100]"
+      showFirstLastButtons
+      aria-label="Select page of satellites"
+    >
+    </mat-paginator>
+  </div>
+</section>
