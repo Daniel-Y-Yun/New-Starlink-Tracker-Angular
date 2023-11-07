@@ -28,10 +28,12 @@ export class SatDataService {
   constructor(private http: HttpClient) {
     // localStorage.setItem('lastExecutionDate', 'j');
     this.initSatsList();
+    this.initSats();
     // console.log(this.satList);
   }
 
   getSatList(): Satellite[] {
+    console.log(this.satList);
     return this.satList;
   }
 

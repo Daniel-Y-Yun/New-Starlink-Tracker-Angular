@@ -2,104 +2,104 @@
   <table mat-table [dataSource]="dataSource">
     <!-- satname Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">Name</th>
       <td mat-cell *matCellDef="let element">{{ element.satname }}</td>
     </ng-container>
 
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">Id</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.OBJECT_ID }}</td>
     </ng-container>
 
     <ng-container matColumnDef="tle">
-      <th mat-header-cell *matHeaderCellDef>TLE</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">TLE</th>
       <td mat-cell *matCellDef="let element">{{ element.tle }}</td>
     </ng-container>
 
     <ng-container matColumnDef="epoch">
-      <th mat-header-cell *matHeaderCellDef>Epoch</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="Epoch of Mean Keplerian elements." matTooltipPosition="right">Epoch</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.EPOCH }}</td>
     </ng-container>
 
     <ng-container matColumnDef="meanMotion">
-      <th mat-header-cell *matHeaderCellDef>Mean Motion</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">Mean Motion</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_MOTION }}</td>
     </ng-container>
 
     <ng-container matColumnDef="eccentricity">
-      <th mat-header-cell *matHeaderCellDef>Eccentricity</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">Eccentricity</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.ECCENTRICITY }}</td>
     </ng-container>
 
     <ng-container matColumnDef="inclination">
-      <th mat-header-cell *matHeaderCellDef>Inclination</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">Inclination</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.INCLINATION }}</td>
     </ng-container>
 
     <ng-container matColumnDef="ra">
-      <th mat-header-cell *matHeaderCellDef>RA_OF_ASC_NODE</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">RA_OF_ASC_NODE</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.RA_OF_ASC_NODE }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="arg">
-      <th mat-header-cell *matHeaderCellDef>ARG_OF_PERICENTER</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">ARG_OF_PERICENTER</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.ARG_OF_PERICENTER }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="meanAnomoly">
-      <th mat-header-cell *matHeaderCellDef>MEAN_ANOMALY</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">MEAN_ANOMALY</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.MEAN_ANOMALY }}</td>
     </ng-container>
 
     <ng-container matColumnDef="ephemeris">
-      <th mat-header-cell *matHeaderCellDef>EPHEMERIS_TYPE</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">EPHEMERIS_TYPE</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.EPHEMERIS_TYPE }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="class">
-      <th mat-header-cell *matHeaderCellDef>Classification Type</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">Classification Type</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.CLASSIFICATION_TYPE }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="noradId">
-      <th mat-header-cell *matHeaderCellDef>NORAD_CAT_ID</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">NORAD_CAT_ID</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.NORAD_CAT_ID }}</td>
     </ng-container>
 
     <ng-container matColumnDef="elementSetNo">
-      <th mat-header-cell *matHeaderCellDef>ELEMENT_SET_NO</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">ELEMENT_SET_NO</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.ELEMENT_SET_NO }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="rev">
-      <th mat-header-cell *matHeaderCellDef>REV_AT_EPOCH</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">REV_AT_EPOCH</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.REV_AT_EPOCH }}</td>
     </ng-container>
 
     <ng-container matColumnDef="bstar">
-      <th mat-header-cell *matHeaderCellDef>BSTAR</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">BSTAR</th>
       <td mat-cell *matCellDef="let element">{{ element.omm.BSTAR }}</td>
     </ng-container>
 
     <ng-container matColumnDef="meanMotionDot">
-      <th mat-header-cell *matHeaderCellDef>MEAN_MOTION_DOT</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">MEAN_MOTION_DOT</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.MEAN_MOTION_DOT }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="meanMotionDdot">
-      <th mat-header-cell *matHeaderCellDef>MEAN_MOTION_DDOT</th>
+      <th mat-header-cell *matHeaderCellDef matTooltip="test" matTooltipPosition="right">MEAN_MOTION_DDOT</th>
       <td mat-cell *matCellDef="let element">
         {{ element.omm.MEAN_MOTION_DDOT }}
       </td>
