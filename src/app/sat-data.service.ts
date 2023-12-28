@@ -33,6 +33,7 @@ export class SatDataService {
   }
 
   getSatList(): Satellite[] {
+    console.log(this.satList);
     return this.satList;
   }
 

@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { SatDataService } from '../sat-data.service';
 import { LaunchDate } from '../launchDate';
 import { Satellite } from '../satellite';
@@ -15,7 +16,7 @@ import { Satellite } from '../satellite';
 @Component({
   selector: 'app-sat-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, MatPaginatorModule],
+  imports: [CommonModule, MatTableModule, MatPaginatorModule, MatTooltipModule],
   templateUrl: './sat-table.component.html',
   styleUrls: ['./sat-table.component.css'],
 })
@@ -45,6 +46,7 @@ export class SatTableComponent implements AfterViewInit {
     'meanMotionDot',
     'meanMotionDdot'
   ];
+
   dataSource = new MatTableDataSource<Satellite>(this.satList);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
